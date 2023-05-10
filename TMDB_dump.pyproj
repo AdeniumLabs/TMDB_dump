@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ce78ad9f-d521-441b-ba0f-c4491e39690c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>TMDB_tv_show_dump.py</StartupFile>
+    <StartupFile>TMDB_movie_dump.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

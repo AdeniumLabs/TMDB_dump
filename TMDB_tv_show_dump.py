@@ -14,6 +14,21 @@ def get_last_added_tv_show_id(api_key):
     response = requests.get(latest_tv_show_url)
     return response.json()['id']
 
+def get_translate_linguages(api_key, tv_id, path):
+    # Retrieve tv show translations
+        translations_url = f"https://api.themoviedb.org/3/tv/{tv_id}/translations?api_key={api_key}"
+        response = requests.get(translations_url)
+        if response.status_code != 200:
+            with open(os.path.join(path, "errors.txt"), "a") as f:
+                f.write(f'{str(tv_id)}-translations-{response.status_code}\n')
+            return
+        translations = response.json()["translations"]
+        languages = []
+        for translation in translations:
+            languages.append(f"{translation['iso_639_1']}-{translation['iso_3166_1']}")
+        return languages
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--api_key", type=str, required=True, help="Your API key")
@@ -62,3 +77,4 @@ if __name__ == '__main__':
     #    console.print(f"[b]Range {index}/{total_ranges} downloaded in {elapsed_time:.2f}s.[/b]", style="green on black")
 
     #console.print("[green]All ranges downloaded successfully.[/green]")
+
